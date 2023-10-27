@@ -7,7 +7,7 @@
  * @return PDO
  */
 function conDB(){
-    $con= new PDO('mysql:host=localhost;dbname=pt04_raul_de_mingo', 'root', '');
+    $con= new PDO('mysql:host=localhost;dbname=pt05_raul_de_mingo', 'root', '');
     if(empty($con)) echo "<script>alert('No s'ha pogut connectar a la BD')</script>";
     return $con;
 }
