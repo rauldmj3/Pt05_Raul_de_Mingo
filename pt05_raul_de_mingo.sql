@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Base de datos: `pt05_raul_de_mingo`
 --
 CREATE DATABASE IF NOT EXISTS pt05_raul_de_mingo;
-USE DATABASE pt05_raul_de_mingo;
+USE pt05_raul_de_mingo;
 -- --------------------------------------------------------
 
 --
