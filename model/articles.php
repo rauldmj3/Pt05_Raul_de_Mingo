@@ -31,6 +31,7 @@ function mostrar(){
     $lista="";
     $i=0;
     foreach($articles as $article){
+
         if($i<$numArtPag && $article["autor"]==$email) {
             $lista .="<form action='../controlador/DUBD.php' method='post'><li>".$article["id"]."-.".$article["article"]." <br><strong>By:</strong> ".$article["autor"]."
             <br><input type='submit' class='button' name='esborrar' value='Esborrar' />  <input type='submit' class='button' name='modificar' value='Modificar' /><input type='hidden' name='id' value=".$article["id"].">

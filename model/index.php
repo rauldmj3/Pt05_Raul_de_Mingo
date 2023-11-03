@@ -32,11 +32,9 @@ function mostrar(){
     if(isset($_SESSION["email"]))$email=$_SESSION["email"];
     else $email="";
     foreach($articles as $article){
-        if($i<$numArtPag) {
+        if($i<$numArtPag ) {
             if(strcmp($email,$article["autor"]))
-            $lista .="<form action='../controlador/DUBD.php' method='post'><li>".$article["id"]."-.".$article["article"]." <br><strong>By:</strong> ".$article["autor"]."
-            <br><input type='submit' class='button' name='esborrar' value='Esborrar' />  <input type='submit' class='button' name='modificar' value='Modificar' /><input type='hidden' name='id' value=".$article["id"].">
-            </li></form>" ;
+            $lista .="<form action='../controlador/DUBD.php' method='post'><li>".$article["id"]."-.".$article["article"]." <br><strong>By:</strong> ".$article["autor"]."</li></form>" ;
             else $lista .="<li>".$article["id"]."-.".$article["article"]." <br><strong>By:</strong> ".$article["autor"]."</li>" ;;
         }else break;
         $i++;
