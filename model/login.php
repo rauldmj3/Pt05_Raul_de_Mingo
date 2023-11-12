@@ -2,6 +2,7 @@
 //Raúl de Mingo Jiménez
 include "../controlador/controlador.php";
 
+
 function checkData(){
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $email=validar($_POST["email"]);
@@ -20,8 +21,8 @@ function login($email){
 }
 
 function enviarCorreo(){
-    
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+    if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["email"])){
         $email=validar($_POST["email"]);
         if(checkEmail($email)){
             $url="http://".$_SERVER['SERVER_NAME']."/Back-End/UF2/Pt05_Raul_de_Mingo/model/cambioContra.php?correo=".$email."&token=";
@@ -47,5 +48,24 @@ function generarToken($email){
     $stt->execute(array("email"=>$email,"token"=>$token));
     return $token;
 }
-require '../vista/login.vista.php';
+
+function recaptcha(){
+        echo '<div class="g-recaptcha" data-sitekey="6LdrZf4oAAAAANkDI3iHgcW4BS__7opPbrCp70yi"></div><br><br>';
+        if(isset($_POST['submit']) && $_POST['submit'] == 'SUBMIT'){
+          if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+          {
+                $secret = '6LdrZf4oAAAAAFc1Zzy7zGwAKc3S4U0b5r0YTyDQ';
+                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+                $responseData = json_decode($verifyResponse);
+                if($responseData->success)
+                    echo '<div style="color: limegreen;"><b>Your contact request have submitted successfully.</b></div>';
+                else
+                    echo '<div style="color: red;"><b>Robot verification failed, please try again.</b></div>';
+          }else{
+              echo '<div style="color: red;"><b>Please do the robot verification.</b></div>';
+          }
+        }
+}
+
+include_once '../vista/login.vista.php';
 ?>
