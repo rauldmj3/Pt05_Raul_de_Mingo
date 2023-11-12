@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2023 a las 21:27:06
+-- Tiempo de generación: 12-11-2023 a las 23:46:39
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pt05_raul_de_mingo`
 --
-CREATE DATABASE IF NOT EXISTS pt05_raul_de_mingo;
-USE pt05_raul_de_mingo;
+
 -- --------------------------------------------------------
 
 --
@@ -39,7 +38,6 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `article`, `autor`) VALUES
-(1, 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.', 'rauldmj2134@gmail.com'),
 (2, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'pepe@gmail.com'),
 (3, 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.', 'pepe@gmail.com'),
 (4, 'Muy lejos, más allá de las montañas de palabras, alejados de los países de las vocales y las consonantes, viven los textos simulados. Viven aislados en casas de letras, en la costa de la semántica, un gran océano de lenguas.', 'rauldmj2134@gmail.com'),
@@ -107,16 +105,19 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(300) NOT NULL
+  `password` varchar(300) NOT NULL,
+  `token_reset` text DEFAULT NULL,
+  `expires` datetime DEFAULT NULL,
+  `social_provider` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
-(10, 'rauldmj2134@gmail.com', 'raul de mingo', '$2y$10$J5qcNJHzdS.nU6EM9BuZKelE3FvN2VYVu3rskO.qwOMdvVpUwIim6'),
-(11, 'pepe@gmail.com', 'pepe', '$2y$10$Kq//Z6fdxUpBzAITxK4e5e/lZ2SD7SVhCMbooEciDcojMQ5o.GznS');
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `token_reset`, `expires`, `social_provider`) VALUES
+(10, 'rauldmj2134@gmail.com', 'raul de mingo', '$2y$10$J5qcNJHzdS.nU6EM9BuZKelE3FvN2VYVu3rskO.qwOMdvVpUwIim6', '2fdda509a3ce89e7794266ed3262f0bd', '2023-11-06 23:09:49', ''),
+(11, 'pepe@gmail.com', 'pepe', '$2y$10$Kq//Z6fdxUpBzAITxK4e5e/lZ2SD7SVhCMbooEciDcojMQ5o.GznS', '', NULL, '');
 
 --
 -- Índices para tablas volcadas
